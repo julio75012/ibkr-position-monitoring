@@ -12,3 +12,5 @@ Cargo.lock
 
 # MSVC Windows builds of rustc generate these, which store debugging information
 *.pdb
+
+IbkrPositionMonitoring/twsapi_macunix.1029.01/IBJts/samples/Cpp/TestCppClient/build/
