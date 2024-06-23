@@ -20,6 +20,7 @@ const unsigned SLEEP_TIME = 10;
 /* Before contacting our API support team please refer to the available documentation. */
 int main(int argc, char** argv)
 {
+	setvbuf(stdout, NULL, _IONBF, 0); //setting buffer size of printf to 0 in order to print directly in the file
 	const char* host = argc > 1 ? argv[1] : "";
 	int port = argc > 2 ? atoi(argv[2]) : 0;
 	if (port <= 0)
