@@ -6,6 +6,7 @@ set_target_properties(TestCppClient
 )
 target_link_libraries(TestCppClient PRIVATE twsapi)
 target_link_libraries(TestCppClient PUBLIC Threads::Threads)
+message(STATUS "Project source directory: ${PROJECT_SOURCE_DIR}")
 target_include_directories(TestCppClient PRIVATE "${PROJECT_SOURCE_DIR}/source/cppclient/" "${PROJECT_SOURCE_DIR}/source/cppclient/client/")
 
 if( MSVC )

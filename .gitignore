@@ -14,3 +14,10 @@ Cargo.lock
 *.pdb
 
 IbkrPositionMonitoring/twsapi_macunix.1029.01/IBJts/samples/Cpp/TestCppClient/build/
+IbkrPositionMonitoring/twsapi_macunix.1029.01/IBJts/samples/Cpp/TestCppClient/CMakeFiles/
+IbkrPositionMonitoring/twsapi_macunix.1029.01/IBJts/samples/Cpp/TestCppClient/lib/
+IbkrPositionMonitoring/twsapi_macunix.1029.01/IBJts/source/cppclient/client/CMakeFiles
+IbkrPositionMonitoring/twsapi_macunix.1029.01/IBJts/source/cppclient/client/lib
+*.o
+*.log
+*.o.d

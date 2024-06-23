@@ -1,5 +1,6 @@
 CXX=g++
 CXXFLAGS=-pthread -Wall -Wno-switch -Wpedantic -Wno-unused-function -std=c++11
+CXXFLAGSDEBUG=-g -pthread -Wall -Wno-switch -Wpedantic -Wno-unused-function -std=c++11
 ROOT_DIR=../../../source/cppclient
 BASE_SRC_DIR=${ROOT_DIR}/client
 INCLUDES=-I${BASE_SRC_DIR} -I${ROOT_DIR}
@@ -11,7 +12,7 @@ LIB_NAME_SO=libbid.so
 TARGET=TestCppClient
 
 $(TARGET)Static:
-	$(CXX) $(CXXFLAGS) $(INCLUDES) $(BASE_SRC_DIR)/*.cpp ./*.cpp $(LIB_DIR)/$(LIB_NAME_A) -o$(TARGET)Static
+	$(CXX) $(CXXFLAGSDEBUG) $(INCLUDES) $(BASE_SRC_DIR)/*.cpp ./*.cpp $(LIB_DIR)/$(LIB_NAME_A) -o $(TARGET)Static
 
 $(TARGET):
 	$(CXX) $(CXXFLAGS) $(INCLUDES) $(BASE_SRC_DIR)/*.cpp ./*.cpp -L$(LIB_DIR) -l:$(LIB_NAME_SO) -o$(TARGET)
