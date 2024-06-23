@@ -1,6 +1,6 @@
 CXX=g++
-CXXFLAGS=-pthread -Wall -Wno-switch -Wpedantic -Wno-unused-function -std=c++11
-CXXFLAGSDEBUG=-g -pthread -Wall -Wno-switch -Wpedantic -Wno-unused-function -std=c++11
+CXXFLAGS=-pthread -Wall -Wno-switch -Wpedantic -Wno-unused-function -std=c++20
+CXXFLAGSDEBUG=-g -pthread -Wall -Wno-switch -Wpedantic -Wno-unused-function -std=c++20
 ROOT_DIR=../../../source/cppclient
 BASE_SRC_DIR=${ROOT_DIR}/client
 INCLUDES=-I${BASE_SRC_DIR} -I${ROOT_DIR}
@@ -11,24 +11,22 @@ LIB_NAME_A=libbid.a
 LIB_NAME_SO=libbid.so
 TARGET=TestCppClient
 
-$(TARGET)Static:
-	$(CXX) $(CXXFLAGSDEBUG) $(INCLUDES) $(BASE_SRC_DIR)/*.cpp ./*.cpp $(LIB_DIR)/$(LIB_NAME_A) -o $(TARGET)Static
+# Collect all source files and corresponding object files
+SRCS=$(wildcard $(BASE_SRC_DIR)/*.cpp ./*.cpp)
+OBJS=$(SRCS:.cpp=.o)
 
-$(TARGET):
-	$(CXX) $(CXXFLAGS) $(INCLUDES) $(BASE_SRC_DIR)/*.cpp ./*.cpp -L$(LIB_DIR) -l:$(LIB_NAME_SO) -o$(TARGET)
+# Default target
+all: $(TARGET)Static
 
-$(TARGET)Dynamic:
-	$(CXX) $(CXXFLAGS) $(INCLUDES)  ./*.cpp -L$(LIB_DIR) -l:$(LIB_NAME_SO) -L$(SOURCE_DIR) -l:$(SOURCE_LIB) -o$(TARGET)Dynamic
+$(TARGET)Static: $(OBJS)
+	$(CXX) $(CXXFLAGSDEBUG) $(INCLUDES) $(OBJS) $(LIB_DIR)/$(LIB_NAME_A) -o $(TARGET)Static
+
+%.o: %.cpp
+	$(CXX) $(CXXFLAGSDEBUG) $(INCLUDES) -c $< -o $@
 
 run$(TARGET)Static:
 	./$(TARGET)Static
 
-run$(TARGET):
-	LD_LIBRARY_PATH=$(PWD)/$(LIB_DIR):$(LD_LIBRARY_PATH) ./$(TARGET)
-
-run$(TARGET)Dynamic:
-	LD_LIBRARY_PATH=$(PWD)/$(LIB_DIR):$(PWD)/$(SOURCE_DIR):$(LD_LIBRARY_PATH) ./$(TARGET)Dynamic
-
 clean:
-	rm -f $(TARGET) $(TARGET)Static $(TARGET)Dynamic *.o
+	rm -f $(TARGET)Static *.o
 
