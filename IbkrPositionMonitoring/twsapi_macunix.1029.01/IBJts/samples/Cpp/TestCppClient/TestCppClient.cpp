@@ -375,7 +375,7 @@ void TestCppClient::pnlOperation()
 void TestCppClient::pnlSingleOperation()
 {
 	//! [reqpnlsingle]
-    m_pClient->reqPnLSingle(7002, "DUD00029", "", 268084);
+    m_pClient->reqPnLSingle(7002, "U9889156", "", 431169414);
 	//! [reqpnlsingle]
 	
     std::this_thread::sleep_for(std::chrono::seconds(2));
@@ -641,7 +641,7 @@ void TestCppClient::contractOperations()
 	std::this_thread::sleep_for(std::chrono::seconds(2));
 	//! [reqcontractdetails]
 	m_pClient->reqContractDetails(210, ContractSamples::OptionForQuery());
-	m_pClient->reqContractDetails(212, ContractSamples::IBMBond());
+	// m_pClient->reqContractDetails(212, ContractSamples::IBMBond());
 	m_pClient->reqContractDetails(213, ContractSamples::IBKRStk());
 	m_pClient->reqContractDetails(214, ContractSamples::Bond());
 	m_pClient->reqContractDetails(215, ContractSamples::FuturesOnOptions());
